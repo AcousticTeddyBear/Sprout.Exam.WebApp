@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sprout.Exam.DataAccess", "S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sprout.Exam.Common", "Sprout.Exam.Common\Sprout.Exam.Common.csproj", "{8DFA8282-B821-463A-914D-E3DE367A1BE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sprout.Exam.Tests", "Sprout.Exam.Tests\Sprout.Exam.Tests.csproj", "{AFE57AA5-E5DF-49B5-A594-22251866872D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sprout.Exam.Tests", "Sprout.Exam.Tests\Sprout.Exam.Tests.csproj", "{AFE57AA5-E5DF-49B5-A594-22251866872D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
