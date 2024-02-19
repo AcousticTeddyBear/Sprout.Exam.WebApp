@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
 using Sprout.Exam.Business.Factories.SalaryFactory;
 using Sprout.Exam.Business.Factories.SalaryFactory.Services;
 using Sprout.Exam.Business.Mapping;
@@ -13,12 +14,58 @@ using Sprout.Exam.DataAccess.Repositories;
 using Sprout.Exam.WebApp.Data;
 using Sprout.Exam.WebApp.Models;
 using System;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 
 namespace Sprout.Exam.WebApp.Extensions
 {
     public static class StartupExtensions
     {
+        public static IServiceCollection AddSwaggerDocumentation(this IServiceCollection services)
+        {
+            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+            services.AddSwaggerGen(options =>
+            {
+                var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+                options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT"
+                });
+
+                options.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        }, Array.Empty<string> ()
+                    }
+                });
+            });
+
+            return services;
+        }
+
+        public static IApplicationBuilder UseSwaggerDocumentation(this IApplicationBuilder app)
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "API V1");
+            });
+
+            return app;
+        }
+
         public static IServiceCollection ConfigureServices(this IServiceCollection services, string connectionString)
         {
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
@@ -31,6 +78,8 @@ namespace Sprout.Exam.WebApp.Extensions
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddScoped<IEmployeeTypeRepository, EmployeeTypeRepository>();
             services.AddScoped<IEmployeesService, EmployeesService>();
+            services.AddScoped<IEmployeeTypesService, EmployeeTypesService>();
+
             return services;
         }
 

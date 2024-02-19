@@ -6,14 +6,16 @@ export class EmployeesIndex extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { employees: [], loading: true };
+    this.state = { employees: [], employeeTypes: {}, loading: true };
   }
 
   componentDidMount() {
+    this.getEmployeeTypes();
     this.populateEmployeeData();
+    this.setState({ loading: false });
   }
 
-  static renderEmployeesTable(employees,parent) {
+  static renderEmployeesTable(employees,employeeTypes,parent) {
     return (
       <table className='table table-striped' aria-labelledby="tabelLabel">
         <thead>
@@ -31,14 +33,14 @@ export class EmployeesIndex extends Component {
               <td>{employee.fullName}</td>
               <td>{employee.birthdate}</td>
               <td>{employee.tin}</td>
-              <td>{employee.typeId === 1?"Regular":"Contractual"}</td>
+              <td>{employeeTypes[employee.typeId]}</td>
               <td>
               <button type='button' className='btn btn-info mr-2' onClick={() => parent.props.history.push("/employees/" + employee.id + "/edit")} >Edit</button>
               <button type='button' className='btn btn-primary mr-2' onClick={() => parent.props.history.push("/employees/" + employee.id + "/calculate")}>Calculate</button>
             <button type='button' className='btn btn-danger mr-2' onClick={() => {
               if (window.confirm("Are you sure you want to delete?")) {
                 parent.deleteEmployee(employee.id);
-              } 
+              }
             } }>Delete</button></td>
             </tr>
           )}
@@ -50,7 +52,7 @@ export class EmployeesIndex extends Component {
   render() {
     let contents = this.state.loading
       ? <p><em>Loading...</em></p>
-      : EmployeesIndex.renderEmployeesTable(this.state.employees,this);
+      : EmployeesIndex.renderEmployeesTable(this.state.employees, this.state.employeeTypes,this);
 
     return (
       <div>
@@ -62,13 +64,22 @@ export class EmployeesIndex extends Component {
     );
   }
 
+  async getEmployeeTypes() {
+    const token = await authService.getAccessToken();
+    const response = await fetch('api/employee-types', {
+      headers: !token ? {} : { 'Authorization': `Bearer ${token}` }
+    });
+    const data = await response.json();
+    this.setState({ employeeTypes: Object.fromEntries(data.map(x => [x.id, x.typeName])) });
+  }
+
   async populateEmployeeData() {
     const token = await authService.getAccessToken();
     const response = await fetch('api/employees', {
       headers: !token ? {} : { 'Authorization': `Bearer ${token}` }
     });
     const data = await response.json();
-    this.setState({ employees: data, loading: false });
+    this.setState({ employees: data });
   }
 
   async deleteEmployee(id) {
@@ -78,13 +89,14 @@ export class EmployeesIndex extends Component {
         headers: !token ? {} : { 'Authorization': `Bearer ${token}`,'Content-Type': 'application/json' }
     };
     const response = await fetch('api/employees/' + id,requestOptions);
-    if(response.status === 200){
-      this.setState({employees: this.state.employees.filter(function(employee) { 
+    if(response.status === 204){
+      this.setState({employees: this.state.employees.filter(function(employee) {
         return employee.id !== id
       })});
     }
     else{
-      alert("There was an error occured.");
+      const data = response.json();
+      alert(data?.message ?? "There was an error occured.");
     }
   }
 }

@@ -16,6 +16,7 @@ namespace Sprout.Exam.Business.Models
         public DateTime? Birthdate { get; set; }
 
         [Required]
+        [EnumDataType(typeof(EmployeeTypeEnum))]
         public EmployeeTypeEnum? TypeId { get; set; }
 
         [Required]

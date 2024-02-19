@@ -21,6 +21,8 @@ namespace Sprout.Exam.WebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSwaggerDocumentation();
+
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddAutoMapper();
@@ -46,6 +48,7 @@ namespace Sprout.Exam.WebApp
         {
             if (env.IsDevelopment())
             {
+                app.UseSwaggerDocumentation();
                 app.UseDeveloperExceptionPage();
                 app.UseMigrationsEndPoint();
                 app.SeedData();
@@ -57,6 +60,8 @@ namespace Sprout.Exam.WebApp
                 app.UseHsts();
             }
 
+
+            app.UseMiddleware<ExceptionHandlerMiddleware>();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
@@ -74,7 +79,6 @@ namespace Sprout.Exam.WebApp
                 endpoints.MapRazorPages();
             });
 
-            app.UseMiddleware<ExceptionHandlerMiddleware>();
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "ClientApp";

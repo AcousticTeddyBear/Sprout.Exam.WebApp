@@ -19,7 +19,7 @@ namespace Sprout.Exam.WebApp.Controllers
         }
 
         /// <summary>
-        /// Refactor this method to go through proper layers and fetch from the DB.
+        /// Get all employees
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -30,7 +30,7 @@ namespace Sprout.Exam.WebApp.Controllers
         }
 
         /// <summary>
-        /// Refactor this method to go through proper layers and fetch from the DB.
+        /// Get employee by ID
         /// </summary>
         /// <returns></returns>
         [HttpGet("{id}")]
@@ -41,7 +41,7 @@ namespace Sprout.Exam.WebApp.Controllers
         }
 
         /// <summary>
-        /// Refactor this method to go through proper layers and update changes to the DB.
+        /// Update employee
         /// </summary>
         /// <returns></returns>
         [HttpPut("{id}")]
@@ -52,7 +52,7 @@ namespace Sprout.Exam.WebApp.Controllers
         }
 
         /// <summary>
-        /// Refactor this method to go through proper layers and insert employees to the DB.
+        /// Create employee
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -64,7 +64,7 @@ namespace Sprout.Exam.WebApp.Controllers
         }
 
         /// <summary>
-        /// Refactor this method to go through proper layers and perform soft deletion of an employee to the DB.
+        /// Delete employee
         /// </summary>
         /// <returns></returns>
         [HttpDelete("{id}")]
@@ -75,11 +75,8 @@ namespace Sprout.Exam.WebApp.Controllers
         }
 
         /// <summary>
-        /// Refactor this method to go through proper layers and use Factory pattern
+        /// Calculate employee salary
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="absentDays"></param>
-        /// <param name="workedDays"></param>
         /// <returns></returns>
         [HttpPost("{id}/calculate")]
         public async Task<IActionResult> Calculate([FromRoute] int id, CalculateSalaryRequest calculateSalaryRequest)
