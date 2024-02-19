@@ -1,0 +1,162 @@
+[
+  {
+    "fullName": "Jane Doe",
+    "birthdate": "1993-03-25",
+    "tin": "123215413",
+    "employeeTypeId": 1,
+    "isDeleted": false,
+    "basicSalary":  20000
+  },
+  {
+    "fullName": "John Doe",
+    "birthdate": "1993-05-28",
+    "tin": "957125412",
+    "employeeTypeId": 2,
+    "isDeleted": false,
+    "basicSalary": 500
+  },
+  {
+    "fullName": "Ilysa Garrick",
+    "birthdate": "1979-06-12",
+    "tin": "0329685988",
+    "employeeTypeId": 2,
+    "isDeleted": false,
+    "basicSalary": 1500
+  },
+  {
+    "fullName": "Gavan Monkeman",
+    "birthdate": "1998-12-01",
+    "tin": "0285069160",
+    "employeeTypeId": 2,
+    "isDeleted": false,
+    "basicSalary": 750
+  },
+  {
+    "fullName": "Elizabeth Sarginson",
+    "birthdate": "2002-12-30",
+    "tin": "4260546465",
+    "employeeTypeId": 1,
+    "isDeleted": false,
+    "basicSalary": 45000
+  },
+  {
+    "fullName": "Lucita Ambrogini",
+    "birthdate": "1962-02-17",
+    "tin": "6948818242",
+    "employeeTypeId": 1,
+    "isDeleted": false,
+    "basicSalary": 80000
+  },
+  {
+    "fullName": "Rozanne Farquar",
+    "birthdate": "1969-10-31",
+    "tin": "2619839564",
+    "employeeTypeId": 2,
+    "isDeleted": false,
+    "basicSalary": 800
+  },
+  {
+    "fullName": "Rosemarie Gillcrist",
+    "birthdate": "1968-06-16",
+    "tin": "6346570773",
+    "employeeTypeId": 1,
+    "isDeleted": false,
+    "basicSalary": 67000
+  },
+  {
+    "fullName": "Dorry O' Mahony",
+    "birthdate": "1978-08-18",
+    "tin": "1608943801",
+    "employeeTypeId": 1,
+    "isDeleted": false,
+    "basicSalary": 27700
+  },
+  {
+    "fullName": "Taber Woodruff",
+    "birthdate": "1957-11-18",
+    "tin": "0842091998",
+    "employeeTypeId": 2,
+    "isDeleted": false,
+    "basicSalary": 950
+  },
+  {
+    "fullName": "Dasi Briztman",
+    "birthdate": "1985-11-22",
+    "tin": "4100167342",
+    "employeeTypeId": 2,
+    "isDeleted": false,
+    "basicSalary": 1200
+  },
+  {
+    "fullName": "Eugene Beak",
+    "birthdate": "1968-10-08",
+    "tin": "1696124204",
+    "employeeTypeId": 2,
+    "isDeleted": false,
+    "basicSalary": 650
+  },
+  {
+    "fullName": "Corene Merrisson",
+    "birthdate": "1975-09-16",
+    "tin": "6992403737",
+    "employeeTypeId": 1,
+    "isDeleted": false,
+    "basicSalary": 50000
+  },
+  {
+    "fullName": "Allegra Ortmann",
+    "birthdate": "2003-09-29",
+    "tin": "7405371574",
+    "employeeTypeId": 1,
+    "isDeleted": false,
+    "basicSalary": 35000
+  },
+  {
+    "fullName": "Julissa Magne",
+    "birthdate": "1965-06-21",
+    "tin": "1860429009",
+    "employeeTypeId": 2,
+    "isDeleted": false,
+    "basicSalary": 450
+  },
+  {
+    "fullName": "Carolus Willett",
+    "birthdate": "1988-01-17",
+    "tin": "1476346240",
+    "employeeTypeId": 2,
+    "isDeleted": false,
+    "basicSalary": 350
+  },
+  {
+    "fullName": "Harriett Paver",
+    "birthdate": "1996-08-30",
+    "tin": "8307086035",
+    "employeeTypeId": 1,
+    "isDeleted": false,
+    "basicSalary": 130000
+  },
+  {
+    "fullName": "Linnea Redmile",
+    "birthdate": "2001-03-05",
+    "tin": "1545830851",
+    "employeeTypeId": 1,
+    "isDeleted": false,
+    "basicSalary": 90000
+  },
+  {
+    "fullName": "Farrel Killingsworth",
+    "birthdate": "1996-09-30",
+    "tin": "3927764817",
+    "employeeTypeId": 2,
+    "isDeleted": false,
+    "basicSalary": 680
+  },
+  {
+    "fullName": "Darda Starmer",
+    "birthdate": "1994-05-24",
+    "tin": "4120824209",
+    "employeeTypeId": 1,
+    "isDeleted": false,
+    "basicSalary": 48000
+  }
+]
