@@ -5,6 +5,6 @@ namespace Sprout.Exam.Business.Factories.SalaryFactory
 {
     public interface ISalaryServiceFactory
     {
-        BaseSalaryService GetEmployee(EmployeeTypeEnum employeeType);
+        BaseSalaryService GetSalaryService(EmployeeTypeEnum employeeType);
     }
 }

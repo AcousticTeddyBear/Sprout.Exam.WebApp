@@ -28,7 +28,7 @@ namespace Sprout.Exam.Business.Services
         {
             var employee = await getEmployeeEntity(id);
 
-            var salaryService = salaryServiceFactory.GetEmployee(employee.EmployeeTypeId);
+            var salaryService = salaryServiceFactory.GetSalaryService(employee.EmployeeTypeId);
             var netSalary = salaryService.CalculateSalary(employee.BasicSalary, calculateSalaryRequest);
 
             return new CalculateSalaryResponse() { Salary = Math.Round(netSalary, 2) };
@@ -44,7 +44,8 @@ namespace Sprout.Exam.Business.Services
         public async Task DeleteEmployee(int id)
         {
             var employee = await getEmployeeEntity(id);
-            await employeeRepository.Delete(employee);
+            employee.IsDeleted = true;
+            await employeeRepository.Update(employee);
         }
 
         public async Task<EmployeeDto> GetEmployeeById(int id)
@@ -71,7 +72,7 @@ namespace Sprout.Exam.Business.Services
 
         private async Task<EmployeeEntity> getEmployeeEntity(int id)
         {
-            return await employeeRepository.Single(e => e.Id == id)
+            return await employeeRepository.Single(e => e.Id == id && !e.IsDeleted)
                 ?? throw new NotFoundException("Employee does not exist.");
         }
     }

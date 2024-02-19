@@ -12,7 +12,7 @@ namespace Sprout.Exam.DataAccess.Repositories
 
         public BaseRepository(SproutExamDbContext dbContext) => this.dbContext = dbContext;
 
-        public IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> predicate)
+        public IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> predicate = null)
         {
             var entities = dbContext.Set<TEntity>() as IQueryable<TEntity>;
 
